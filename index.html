@@ -1,31 +1,21 @@
-<!-- index.html -->
+<!-- index.html (redirector) -->
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Meu Currículo - Felipe Eduardo Farias Belo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=pt.html">
+    <script>
+        const lang = navigator.language || navigator.userLanguage;
+        if (lang.startsWith('pt')) {
+            window.location.href = 'pt.html';
+        } else {
+            window.location.href = 'en.html';
+        }
+    </script>
+    <title>Redirecionando...</title>
 </head>
 <body>
-<header>
-    <h1>Felipe Eduardo Farias Belo</h1>
-    <p><strong>Email:</strong> felipeefb@gmail.com</p>
-    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-eduardo-farias-belo" target="_blank" rel="noopener noreferrer">linkedin.com/in/felipe-eduardo-farias-belo</a></p>
-</header>
-<main>
-    <section>
-        <h2>Experiência</h2>
-        <ul>
-            <li>Desenvolvedor de Software Sênior – Empresa X (2018–2024)</li>
-            <li>Analista de Sistemas – Empresa Y (2014–2018)</li>
-        </ul>
-    </section>
-    <section>
-        <h2>Formação</h2>
-        <ul>
-            <li>Graduação em Ciência da Computação – Universidade Z</li>
-        </ul>
-    </section>
-</main>
+<p>Redirecionando...</p>
 </body>
 </html>
