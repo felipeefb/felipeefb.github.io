@@ -1,13 +1,63 @@
-/* Light theme CSS */
-body {
-    padding-top: 60px;
-}
-.section {
-    padding: 60px 0;
-}
-section:nth-of-type(even) {
-    background-color: #f8f9fa;
-}
+/* Estilos customizados para currículo online */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+body {
+  padding-top: 70px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+.page-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.page-section-light {
+  background-color: #f8f9fa;
+}
+h1, h2, h3 {
+  font-weight: 600;
+}
+h2 {
+  margin-bottom: 2.5rem !important;
+}
+.navbar-brand {
+  font-size: 1.25rem;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}
+.nav-link.active {
+  font-weight: bold;
+}
+.experience-item .list-group-item,
+.project-card .card-body {
+  background-color: transparent;
+}
+.card {
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+footer a {
+  text-decoration: none;
+  font-weight: 500;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 56px;
+  }
+  h1 {
+    font-size: 2.25rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem !important;
+  }
 }

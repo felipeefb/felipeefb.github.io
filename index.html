@@ -1,21 +1,18 @@
-<!-- index.html (redirector) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=pt.html">
-    <script>
-        const lang = navigator.language;
-        if (lang.startsWith('pt')) {
-            window.location.href = 'pt.html';
-        } else {
-            window.location.href = 'en.html';
-        }
-    </script>
-    <title>Redirecionando...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirecting...</title>
+  <script>
+    const lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefix = lang.startsWith('pt') ? 'pt' : 'en';
+    const theme = prefersDark ? 'dark' : 'light';
+    window.location.href = `${prefix}-${theme}.html`;
+  </script>
 </head>
 <body>
-<p>Redirecionando...</p>
+  <p>Redirecionando...</p>
 </body>
 </html>
