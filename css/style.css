@@ -2,69 +2,76 @@
 
 /* 1. Ajustes globais */
 html {
-    scroll-behavior: smooth;  /* Rolagem suave ao clicar nos links de âncora */
+scroll-behavior: smooth; /* Rolagem suave ao clicar nos links de âncora */
 }
 body {
-    padding-top: 70px;  /* Espaço no topo para não esconder conteúdo atrás do menu fixo (ajuste aprox. da altura do nav) */
-    font-family: "Segoe UI", sans-serif; /* Fonte sans-serif moderna e legível */
+padding-top: 70px;  /* Espaço no topo para a navbar fixa (ajuste se a altura da navbar mudar) */
+font-family: "Segoe UI", sans-serif; /* Fonte sans-serif moderna e legível */
 }
 
-/* 2. Títulos e textos */
-h1, h2, h3 {
-    font-weight: 600;
+/* 2. Layout de Seção */
+.page-section {
+padding-top: 3rem;
+padding-bottom: 3rem;
 }
-h1 {
-    font-size: 2.5rem;
+.page-section-light {
+background-color: #f8f9fa; /* Equivalente a .bg-light do Bootstrap */
+}
+
+/* 3. Tipografia */
+h1, h2, h3 {
+font-weight: 600;
 }
 h2 {
-    font-size: 1.75rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-h3 {
-    font-size: 1.2rem;
-}
-p, li {
-    line-height: 1.6;
+margin-bottom: 2.5rem !important;
 }
 
-/* 3. Navbar */
+/* 4. Navbar */
 .navbar-brand {
-    /* Deixe o nome em destaque */
-    font-size: 1.25rem;
-}
-.nav-link {
-    padding: 0.5rem 1rem;
+font-size: 1.25rem;
 }
 .nav-link:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 .nav-link.active {
-    /* Indicar visualmente a seção atual (caso deseje implementar via JS ou scrollspy) */
-    font-weight: bold;
+font-weight: bold;
 }
 
-/* 4. Seções */
-section {
-    /* Espaçamento padrão já aplicado via py-5 no HTML; estilos adicionais se necessário */
-}
-section:nth-of-type(even) {
-    /* Fundo alternado para seções pares (já usamos bg-light em HTML, então esta regra é opcional) */
+/* 5. Componentes Card */
+.experience-item .list-group-item,
+.project-card .card-body {
+background-color: transparent; /* Garante que o fundo do card prevaleça */
 }
 
-/* 5. Botão do header */
-header .btn {
-    margin-top: 1rem;
-    /* Bordas arredondadas leves para o botão */
-    border-radius: 20px;
+.card {
+border: 1px solid #e9ecef;
+transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
 }
 
-/* 6. Responsividade adicional (se necessário) */
-@media (max-width: 576px) {
-    h1 {
-        font-size: 2rem;
-    }
-    .navbar-brand {
-        font-size: 1.1rem;
-    }
+/* 6. Rodapé */
+footer a {
+text-decoration: none;
+font-weight: 500;
+}
+footer a:hover {
+text-decoration: underline;
+}
+
+/* 7. Responsividade */
+@media (max-width: 767px) {
+body {
+/* A altura da navbar do Bootstrap pode mudar em telas menores */
+padding-top: 56px;
+}
+h1 {
+font-size: 2.25rem;
+}
+h2 {
+font-size: 1.75rem;
+margin-bottom: 2rem !important;
+}
 }
