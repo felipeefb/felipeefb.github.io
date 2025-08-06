@@ -1,66 +1,120 @@
-<!-- pt.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felipe Eduardo - Currículo</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Meu Currículo Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Felipe Eduardo Farias Belo</h1>
-  <h2>Engenheiro de Software Sênior</h2>
-  <p>📍 Campina Grande, Paraíba - Brasil</p>
-  <p>📧 felipeefb@gmail.com</p>
-  <p>📞 +55 83 99980-6074 / +55 83 99650-2223</p>
-  <p>🔗 <a href="https://www.linkedin.com/in/felipe-eduardo-farias-belo" target="_blank">LinkedIn</a></p>
 
-  <h3>Resumo Profissional</h3>
-  <p>Engenheiro de Software Sênior com 12 anos de experiência em ambientes diversos, incluindo back-end, front-end, mobile, VR e sistemas embarcados. Apaixonado por arquitetura moderna e código limpo, gosto de aprender novas tecnologias e me adaptar a diferentes stacks. Experiência comprovada em liderar e entregar projetos desafiadores e inovadores.</p>
+<!-- Navegação fixa no topo -->
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">MeuNome</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experiencia">Experiência</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-  <h3>Áreas de Especialidade</h3>
-  <ul>
-    <li>Desenvolvimento front-end e back-end</li>
-    <li>Arquitetura de código</li>
-    <li>Otimização de performance web</li>
-    <li>Linguagens de programação</li>
-    <li>Desenvolvimento ágil</li>
-    <li>Liderança ágil / Scrum Master</li>
-    <li>Controle de versão</li>
-    <li>Desenvolvimento orientado a testes</li>
-  </ul>
+<!-- Seção de Cabeçalho / Apresentação -->
+<header class="bg-primary text-white text-center p-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Meu Nome Completo</h1>
+        <p class="lead">Engenheiro de Software</p>
+        <a href="curriculo.pdf" class="btn btn-outline-light btn-lg mt-3">Baixar CV em PDF</a>
+    </div>
+</header>
 
-  <h3>Experiência Profissional</h3>
-  <p><strong>VIRTUS/UFCG</strong><br>
-  Engenheiro de Software | Jul 2013 – Mai 2025</p>
-  <ul>
-    <li>Participação em diversos projetos de pesquisa e aplicação industrial</li>
-    <li>Desenvolvimento de jogos Android e apps para Microsoft Surface</li>
-    <li>Criação de apps Android, soluções fullstack com Angular + Spring Boot e backends em Java, .NET, Python e NestJS</li>
-    <li>Integração com dispositivos, APIs backend e sistemas embarcados com Linux e Raspberry Pi</li>
-    <li>Aplicativo de VR otimizado para GPU no Meta Quest 2 entregue em 20 dias</li>
-    <li>Arquitetura escalável de longo prazo com NestJS e TypeScript</li>
-    <li>Atuação em onboarding, mentoria técnica e documentação</li>
-  </ul>
+<main>
+    <!-- Seção Sobre -->
+    <section id="sobre" class="page-section">
+        <div class="container">
+            <h2 class="text-center">Sobre Mim</h2>
+            <p class="text-center w-75 mx-auto">Sou um desenvolvedor full-stack com X anos de experiência em ...
+                <!-- texto de bio --> </p>
+        </div>
+    </section>
 
-  <h3>Projetos Relevantes</h3>
-  <p><strong>Arquitetura escalável com NestJS</strong></p>
-  <ul>
-    <li>Arquitetura backend modular e escalável com NestJS e TypeScript</li>
-    <li>Projeto pensado para 5+ anos de uso em múltiplas aplicações</li>
-    <li>Boas práticas de arquitetura limpa, organização e injeção de dependência</li>
-    <li>Facilitou onboarding e transferência de conhecimento</li>
-  </ul>
+    <!-- Seção Experiência -->
+    <section id="experiencia" class="page-section page-section-light">
+        <div class="container">
+            <h2 class="text-center">Experiência Profissional</h2>
+            <!-- Item de experiência 1 -->
+            <div class="card experience-item mb-4 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title h5">Desenvolvedor Web – Empresa XYZ</h3>
+                    <p class="card-subtitle mb-2 text-muted"><em>Jan 2020 – Dez 2024</em></p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Desenvolvi aplicações web responsivas usando React e Bootstrap.</li>
+                        <li class="list-group-item">Liderei a migração do sistema interno para uma arquitetura baseada
+                            em microserviços.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Adicionar mais cards de experiência aqui -->
+        </div>
+    </section>
 
-  <p><strong>Aplicativo de VR para Meta Quest 2</strong></p>
-  <ul>
-    <li>Protótipo VR em Unity com renderização otimizada para GPU</li>
-    <li>Implementação completa com integração do headset e ajuste de performance</li>
-  </ul>
+    <!-- Seção Projetos -->
+    <section id="projetos" class="page-section">
+        <div class="container">
+            <h2 class="text-center">Meus Projetos</h2>
+            <div class="row">
+                <!-- Projeto 1 -->
+                <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                    <div class="card project-card w-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title h5">Projeto ABC</h3>
+                            <p class="card-text">Descrição breve do projeto ABC, destacando tecnologias usadas e
+                                objetivos alcançados.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projeto 2 -->
+                <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                    <div class="card project-card w-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title h5">Projeto DEF</h3>
+                            <p class="card-text">Descrição breve do projeto DEF, destacando tecnologias usadas e
+                                objetivos alcançados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-  <h3>Formação</h3>
-  <p>Bacharelado em Ciência da Computação — Incompleto / em fase final<br>
-  2008 - 2012 | Universidade Federal da Paraíba (UFPB)</p>
-  <p>Tecnólogo em Desenvolvimento de Jogos Digitais, TI<br>
-  2010 - 2013 | Facisa – Faculdade de Ciências Sociais Aplicadas</p>
+<!-- Rodapé com Contato -->
+<footer id="contato" class="page-section page-section-light text-center">
+    <div class="container">
+        <h2>Contato</h2>
+        <p class="mb-1">Entre em contato comigo através do email:
+            <a href="mailto:seunome@email.com">seunome@email.com</a>
+        </p>
+        <p>LinkedIn:
+            <a href="https://www.linkedin.com/in/seuperfil" target="_blank" rel="noopener noreferrer">linkedin.com/in/seuperfil</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Scripts Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
