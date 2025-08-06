@@ -1,0 +1,13 @@
+/* Light theme CSS */
+body {
+    padding-top: 60px;
+}
+.section {
+    padding: 60px 0;
+}
+section:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+html {
+    scroll-behavior: smooth;
+}
