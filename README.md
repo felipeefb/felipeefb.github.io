@@ -5,6 +5,9 @@ A responsive, bilingual portfolio website hosted on GitHub Pages, showcasing the
 ## 🌟 Features
 
 - **Bilingual Support**: Available in Portuguese (PT) and English (EN)
+- **Multiple Resume Formats**: Two distinct versions available:
+  - **Detailed Portfolio**: Comprehensive experience with detailed job descriptions and project cards
+  - **Condensed Resume**: Simplified format with summary experience and highlighted projects
 - **Theme Switching**: Automatic dark/light theme detection based on user preferences
 - **Responsive Design**: Optimized for desktop and mobile devices using Bootstrap 5.3.1
 - **Smart Redirection**: Automatic language and theme detection on first visit
@@ -23,10 +26,12 @@ A responsive, bilingual portfolio website hosted on GitHub Pages, showcasing the
 ```
 felipeefb.github.io/
 ├── index.html              # Main entry point with auto-redirection
-├── pt-dark.html            # Portuguese version with dark theme
-├── pt-light.html           # Portuguese version with light theme
-├── en-dark.html            # English version with dark theme
-├── en-light.html           # English version with light theme
+├── pt-dark.html            # Portuguese detailed portfolio with dark theme
+├── pt-light.html           # Portuguese detailed portfolio with light theme
+├── pt-dark3.html           # Portuguese condensed resume with dark theme
+├── en-dark.html            # English detailed portfolio with dark theme
+├── en-light.html           # English detailed portfolio with light theme
+├── en-dark3.html           # English condensed resume with dark theme
 ├── css/
 │   ├── style-dark.css      # Dark theme styles
 │   └── style-light.css     # Light theme styles
