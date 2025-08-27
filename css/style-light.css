@@ -49,6 +49,13 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+/* Screen layout: keep content readable and similar to A4 width */
+#cv {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 @media (max-width: 767px) {
   body {
     padding-top: 56px;
@@ -60,4 +67,52 @@ footer a:hover {
     font-size: 1.75rem;
     margin-bottom: 2rem !important;
   }
+}
+
+@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    nav.navbar {
+        display: none !important;
+    }
+    body {
+        padding-top: 0 !important;
+    }
+    .card, .card:hover {
+        box-shadow: none !important;
+        transform: none !important;
+    }
+
+    @page  {
+        size: A4;
+        margin: 12mm;
+    }
+
+    #cv {
+        width: auto !important;
+        max-width: 186mm;
+        margin: 0 auto;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid-page;
+    }
+
+    p, ul, ol, li, table {
+        page-break-inside: avoid;
+        break-inside: avoid-page;
+    }
+
+    .card, .card-body, .list-group, .list-group-item, .container, .row, .col {
+        page-break-inside: avoid;
+        break-inside: avoid-page;
+    }
+
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+    }
 }

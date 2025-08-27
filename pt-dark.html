@@ -12,7 +12,7 @@
     <div class="container">
         <a class="navbar-brand" href="#about">Felipe Belo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -23,10 +23,12 @@
                 <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
             </ul>
+            <button id="dowload-pdf-button" class="btn btn-primary ms-3 no-print" onclick="generatePDF()"> Baixar PDF</button>
         </div>
     </div>
 </nav>
 
+<div id="cv">
 <section id="about" class="section text-center">
     <div class="container">
         <h1>Felipe Eduardo Farias Belo</h1>
@@ -230,12 +232,59 @@
 <section id="skills" class="section">
         <div class="container">
             <h2>Habilidades</h2>
-            <ul>
-                <li>Front-end & back-end web development</li>
-                <li>Code structure & architecture</li>
-                <li>Agile software development e liderança</li>
-                <li>Test driven development, Git, CI/CD</li>
-            </ul>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Linguagens & Frameworks</h5>
+                    <ul>
+                        <li>TypeScript, JavaScript</li>
+                        <li>Java, Spring Boot</li>
+                        <li>C#, .NET Framework</li>
+                        <li>Python, Django, Flask</li>
+                        <li>C, C++</li>
+                        <li>Angular, React</li>
+                        <li>Unity (VR/AR)</li>
+                        <li>NestJS</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Backend & Bancos de Dados</h5>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>REST APIs</li>
+                        <li>Sistemas de Banco de Dados</li>
+                        <li>Arquitetura de Microserviços</li>
+                        <li>Integração de Sistemas</li>
+                    </ul>
+                    <h5>DevOps & Ferramentas</h5>
+                    <ul>
+                        <li>Git, CI/CD</li>
+                        <li>Docker/Containers</li>
+                        <li>Linux Server</li>
+                        <li>Raspberry Pi</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Especialidades</h5>
+                    <ul>
+                        <li>Sistemas Embarcados</li>
+                        <li>Desenvolvimento Android</li>
+                        <li>Desenvolvimento VR/AR</li>
+                        <li>OCR & Processamento de Imagens</li>
+                        <li>Compute Shaders</li>
+                        <li>Lógica Fuzzy</li>
+                        <li>SNMP/MIBs, YANG Models</li>
+                        <li>Grafana, Monitoramento</li>
+                    </ul>
+                    <h5>Práticas & Metodologias</h5>
+                    <ul>
+                        <li>Arquitetura de Software</li>
+                        <li>Clean Architecture</li>
+                        <li>Scrum, Metodologias Ágeis</li>
+                        <li>Liderança Técnica</li>
+                        <li>Full Stack Development</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 <section id="contact" class="section">
@@ -247,7 +296,37 @@
             <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-eduardo-farias-belo" target="_blank">linkedin.com/in/felipe-eduardo-farias-belo</a></p>
         </div>
     </section>
+</div><!-- /#cv -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+// Geração de PDF em A4 respeitando quebras de página via CSS
+function generatePDF() {
+  const element = document.getElementById('cv');
+
+  const opt = {
+    margin: [10, 12, 10, 12], // mm: topo, esquerda, baixo, direita
+    filename: 'curriculo.pdf',
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      letterRendering: true
+    },
+    jsPDF: {
+      unit: 'mm',
+      format: 'a4',
+      orientation: 'portrait'
+    },
+    pagebreak: {
+      mode: ['css', 'legacy'],
+      avoid: ['.card', 'li', 'table', 'h2', '.list-group', '.container .row']
+    }
+  };
+
+  html2pdf().set(opt).from(element).save();
+}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
