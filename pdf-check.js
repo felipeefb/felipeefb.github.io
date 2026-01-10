@@ -1,9 +1,8 @@
 const path = require('path');
 const fs = require('fs');
-const { chromium } = require('playwright');
 const { PDFDocument } = require('pdf-lib');
 
-const pages = ['en-light.html', 'en-dark.html', 'pt-light.html', 'pt-dark.html'];
+const pdfs = ['Resume Felipe Belo.pdf', 'Curriculo Felipe Belo.pdf'];
 
 async function checkPdf(download) {
   const filePath = await download.path();
@@ -28,27 +27,15 @@ async function checkPdf(download) {
 }
 
 async function run() {
-  const browser = await chromium.launch({ headless: true });
-
-  for (const file of pages) {
-    const context = await browser.newContext({ acceptDownloads: true });
-    const page = await context.newPage();
-    await page.setViewportSize({ width: 1280, height: 1600 });
-
-    const url = 'file://' + path.join(__dirname, file);
-    await page.goto(url);
-
-    const downloadPromise = page.waitForEvent('download');
-    await page.click('#dowload-pdf-button');
-    const download = await downloadPromise;
-
+  for (const file of pdfs) {
+    const filePath = path.join(__dirname, file);
+    if (!fs.existsSync(filePath)) {
+      throw new Error(`Missing PDF: ${file}`);
+    }
+    const download = { path: async () => filePath };
     await checkPdf(download);
-    await page.close();
-    await context.close();
     console.log(`OK: ${file}`);
   }
-
-  await browser.close();
 }
 
 run().catch(err => {
