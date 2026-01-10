@@ -1,22 +1,6 @@
-# Dependencies
-/node_modules
-
-# Build output
-/dist
-/build
-
-# IDE configuration
-.idea/
-.vscode/
-
-# Environment variables
-.env*
-!.env.example
-
-# Log files
-*.log
-npm-debug.log*
-
-# Operating System files
-.DS_Store
-Thumbs.db
+node_modules/
+package-lock.json
+playwright-report/
+test-results/
+*.pdf
+visual-output/
