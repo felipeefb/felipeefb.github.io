@@ -1,11 +1,20 @@
+const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
 
+const pdfDir = path.join(__dirname, 'pdf');
 const targets = [
   { html: 'en-light.html', pdf: 'Resume Felipe Belo.pdf' },
   { html: 'pt-light.html', pdf: 'Curriculo Felipe Belo.pdf' }
 ];
 
+/**
+ * Render a single HTML resume into a tracked PDF.
+ * @param {{ html: string, pdf: string }} param0 - HTML filename and target PDF name.
+ * @param {import('playwright').Browser} browser - Shared Playwright browser instance.
+ * @returns {Promise<void>}
+ * @author Felipe Belo (https://github.com/felipeefb)
+ */
 async function generate({ html, pdf }, browser) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 2200 } });
   const url = 'file://' + path.join(__dirname, html);
@@ -31,7 +40,7 @@ async function generate({ html, pdf }, browser) {
   await page.waitForSelector('#cv');
   await page.evaluate(() => window.scrollTo(0, 0));
 
-  const pdfPath = path.join(__dirname, pdf);
+  const pdfPath = path.join(pdfDir, pdf);
   await page.pdf({
     path: pdfPath,
     format: 'A4',
@@ -41,10 +50,16 @@ async function generate({ html, pdf }, browser) {
   });
 
   await page.close();
-  console.log(`Generated ${pdf}`);
+  console.log(`Generated ${path.relative(__dirname, pdfPath)}`);
 }
 
+/**
+ * Boot a headless browser and generate all PDFs into /pdf.
+ * @returns {Promise<void>}
+ * @author Felipe Belo (https://github.com/felipeefb)
+ */
 async function run() {
+  fs.mkdirSync(pdfDir, { recursive: true });
   const browser = await chromium.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']

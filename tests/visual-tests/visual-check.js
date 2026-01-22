@@ -1,16 +1,30 @@
+/**
+ * Visual regression checks for the resume pages using Playwright and pixelmatch.
+ * Captures #cv screenshots and compares them to stored baselines.
+ * @author Felipe Belo (https://github.com/felipeefb)
+ */
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
 const pixelmatch = require('pixelmatch');
 const { PNG } = require('pngjs');
 
+const rootDir = path.resolve(__dirname, '..', '..');
 const pages = ['en-light.html', 'en-dark.html', 'pt-light.html', 'pt-dark.html'];
-const baselineDir = path.join(__dirname, 'visual-baseline');
-const outputDir = path.join(__dirname, 'visual-output');
+const baselineDir = path.join(__dirname, 'baseline');
+const outputDir = path.join(__dirname, 'output');
 
 fs.mkdirSync(baselineDir, { recursive: true });
 fs.mkdirSync(outputDir, { recursive: true });
 
+/**
+ * Capture a screenshot of a selector into a PNG buffer.
+ * @param {import('playwright').Page} page - Playwright page.
+ * @param {string} selector - CSS selector for the element to screenshot.
+ * @param {string} filePath - Output file path.
+ * @returns {Promise<Buffer>}
+ * @author Felipe Belo (https://github.com/felipeefb)
+ */
 async function captureScreenshot(page, selector, filePath) {
   const handle = await page.$(selector);
   if (!handle) {
@@ -20,6 +34,14 @@ async function captureScreenshot(page, selector, filePath) {
   return fs.readFileSync(filePath);
 }
 
+/**
+ * Compare the current screenshot against a baseline, updating outputs and diffs.
+ * Creates a baseline if none exists yet.
+ * @param {string} name - Baseline name (without extension).
+ * @param {Buffer} currentBuffer - Current screenshot buffer.
+ * @throws If the mismatch ratio exceeds the threshold.
+ * @author Felipe Belo (https://github.com/felipeefb)
+ */
 function compareOrStoreBaseline(name, currentBuffer) {
   const baselinePath = path.join(baselineDir, `${name}.png`);
   const outputPath = path.join(outputDir, `${name}.png`);
@@ -59,13 +81,22 @@ function compareOrStoreBaseline(name, currentBuffer) {
   }
 }
 
+/**
+ * Launch headless Chromium and run visual regressions for each page variant.
+ * @returns {Promise<void>}
+ * @author Felipe Belo (https://github.com/felipeefb)
+ */
 async function run() {
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({
+    headless: true,
+    chromiumSandbox: false,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
 
   for (const file of pages) {
     const context = await browser.newContext({ viewport: { width: 1280, height: 2200 } });
     const page = await context.newPage();
-    const url = 'file://' + path.join(__dirname, file);
+    const url = 'file://' + path.join(rootDir, file);
 
     await page.goto(url);
     await page.waitForSelector('#cv');

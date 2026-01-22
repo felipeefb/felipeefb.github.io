@@ -2,8 +2,8 @@
   "name": "felipeefb-github-io",
   "private": true,
   "scripts": {
-    "test:pdf": "node pdf-check.js",
-    "test:visual": "node visual-check.js",
+    "test:pdf": "node tests/pdf-tests/pdf-check.js",
+    "test:visual": "node tests/visual-tests/visual-check.js",
     "build:pdf": "node build-pdfs.js"
   },
   "devDependencies": {
