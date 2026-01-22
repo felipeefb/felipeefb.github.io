@@ -1,91 +1,99 @@
-# Felipe Eduardo Farias Belo - Portfolio Website
+# Felipe Eduardo Farias Belo - Resume Site
 
-A responsive, bilingual portfolio website hosted on GitHub Pages, showcasing the professional resume and experience of Felipe Eduardo Farias Belo, Senior Software Engineer.
+## Overview
+Static, bilingual resumes served via GitHub Pages, focused on reproducible downloads and regression-tested layout. Built with vanilla HTML/CSS, Playwright for PDF rendering, pdf-lib/pdf-parse for integrity checks, and pixelmatch/PNG for visual diffs. Great for hosting a personal CV while keeping the printable version trustworthy and versioned.
 
-## 🌟 Features
+[Back to Table of contents](#table-of-contents)
 
-- **Bilingual Support**: Available in Portuguese (PT) and English (EN)
-- **Multiple Resume Formats**: Two distinct versions available:
-  - **Detailed Portfolio**: Comprehensive experience with detailed job descriptions and project cards
-  - **Condensed Resume**: Simplified format with summary experience and highlighted projects
-- **Theme Switching**: Automatic dark/light theme detection based on user preferences
-- **Responsive Design**: Optimized for desktop and mobile devices using Bootstrap 5.3.1
-- **Smart Redirection**: Automatic language and theme detection on first visit
-- **Professional Sections**: About, Experience, Education, Projects, Skills, and Contact
+## Table of contents
+- [Overview](#overview)
+- [What's Inside](#whats-inside)
+- [Project Structure](#project-structure)
+- [Running Locally](#running-locally)
+- [Tests and Checks](#tests-and-checks)
+- [PDF Outputs](#pdf-outputs)
+- [Usage & Forking](#usage--forking)
+- [Contact](#contact)
+- [License](#license)
 
-## 🚀 Technologies Used
+[Back to Table of contents](#table-of-contents)
 
-- **HTML5**: Semantic markup and structure
-- **CSS3**: Custom styling with theme variants
-- **Bootstrap 5.3.1**: Responsive framework and components
-- **JavaScript**: Theme and language detection logic
-- **GitHub Pages**: Static site hosting
+## What's Inside
+- Language/theme detection in `index.html` routes to English or Portuguese, light or dark.
+- Four HTML resumes: `en-light.html`, `en-dark.html`, `pt-light.html`, `pt-dark.html` styled by `css/style-light.css` and `css/style-dark.css`.
+- Prebuilt, tracked PDFs stored under `pdf/` generated through Playwright for consistent downloads.
+- Visual regression baselines in `tests/visual-tests/baseline/` to catch unintended UI changes.
+- Node scripts to rebuild PDFs, validate format/language, and check visuals.
 
-## 📁 Project Structure
+[Back to Table of contents](#table-of-contents)
 
+## Project Structure
 ```
-felipeefb.github.io/
-├── index.html              # Main entry point with auto-redirection
-├── pt-dark.html            # Portuguese detailed portfolio with dark theme
-├── pt-light.html           # Portuguese detailed portfolio with light theme
-├── pt-dark3.html           # Portuguese condensed resume with dark theme
-├── en-dark.html            # English detailed portfolio with dark theme
-├── en-light.html           # English detailed portfolio with light theme
-├── en-dark3.html           # English condensed resume with dark theme
+.
+├── index.html
+├── en-dark.html
+├── en-light.html
+├── pt-dark.html
+├── pt-light.html
+├── pdf/
+│   ├── Resume Felipe Belo.pdf
+│   └── Curriculo Felipe Belo.pdf
 ├── css/
-│   ├── style-dark.css      # Dark theme styles
-│   └── style-light.css     # Light theme styles
-└── README.md               # Project documentation
+│   ├── style-dark.css
+│   └── style-light.css
+├── build-pdfs.js            # Playwright render of the HTML pages into A4 PDFs (hides nav/controls)
+├── pdf.js                   # Legacy placeholder pointing to static PDFs
+├── tests/
+│   ├── pdf-tests/
+│   │   └── pdf-check.js     # PDF integrity + language/format assertions
+│   └── visual-tests/
+│       ├── baseline/        # Reference screenshots for the four page variants
+│       ├── output/          # Generated diffs/screenshots (gitignored)
+│       └── visual-check.js  # Pixelmatch-based screenshot comparison for the #cv section
+└── package.json             # Scripts and dev dependencies
 ```
 
-## 🎯 How It Works
+[Back to Table of contents](#table-of-contents)
 
-1. **Entry Point**: `index.html` detects the user's browser language and color scheme preference
-2. **Smart Routing**: Automatically redirects to the appropriate version:
-   - Language: Portuguese (`pt`) or English (`en`)
-   - Theme: Dark or Light based on `prefers-color-scheme`
-3. **Responsive Layout**: All pages adapt to different screen sizes with mobile-first design
+## Running Locally
+1. Install dependencies (downloads a Playwright Chromium):  
+   `npm install`
+2. Preview the site by opening `index.html` or serving the folder:  
+   `python -m http.server 8000` or `npx serve .`
+3. Regenerate PDFs (writes to `pdf/`):  
+   `npm run build:pdf`
 
-## 🛠️ Local Development
+[Back to Table of contents](#table-of-contents)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/felipeefb/felipeefb.github.io.git
-   ```
+## Tests and Checks
+- `npm run test:pdf` — ensures each tracked PDF in `pdf/` has a valid header, stays within size limits, keeps A4 dimensions, and contains language-specific text while rejecting the other language.
+- `npm run test:visual` — screenshots `#cv` for each HTML page and compares against `tests/visual-tests/baseline/` with pixelmatch. Outputs current and diff images to `tests/visual-tests/output/`. If a baseline is missing, the current screenshot becomes the new baseline candidate.
 
-2. Open `index.html` in your browser or serve with a local server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   
-   # Using Node.js
-   npx serve .
-   ```
+[Back to Table of contents](#table-of-contents)
 
-3. Navigate to `http://localhost:8000` to view the site
+## PDF Outputs
+- Download buttons in the HTML files point to the `pdf/` directory.
+- `npm run build:pdf` regenerates `pdf/Resume Felipe Belo.pdf` and `pdf/Curriculo Felipe Belo.pdf` via Playwright with navigation/controls hidden for print.
+- Git tracks these PDFs to keep GitHub Pages downloads consistent; replace them by rerunning the build if layout changes intentionally.
 
-## 🌐 Live Website
+[Back to Table of contents](#table-of-contents)
 
-Visit the live website at: [https://felipeefb.github.io](https://felipeefb.github.io)
+## Usage & Forking
+- To adapt this resume, update the HTML content, tweak `css/style-light.css` and `css/style-dark.css`, then run `npm run build:pdf` to refresh `pdf/` before publishing.
+- If you fork, keep `tests/` intact so PDF and visual checks guard against regressions; refresh `tests/visual-tests/baseline/` only after intentional layout changes.
+- GitHub Pages can serve directly from the root; the tracked PDFs ensure download links remain stable for visitors.
+- Attribution: please retain credit to Felipe Belo as the originator of this project when publishing derivatives.
 
-## 👨‍💻 About Felipe Eduardo Farias Belo
+[Back to Table of contents](#table-of-contents)
 
-Senior Software Engineer with 12 years of experience in system development. Since 2013, works at the VIRTUS innovation center (UFCG), leading R&D projects in partnership with companies. Has extensive experience in agile methodologies, full-stack development, and technical team leadership.
+## Contact
+- Email: felipeefb@gmail.com  
+- LinkedIn: [felipe-eduardo-farias-belo](https://www.linkedin.com/in/felipe-eduardo-farias-belo)
 
-### Key Expertise:
-- Full-stack web development (Angular, Spring Boot, NestJS)
-- Mobile development (Android, VR applications)
-- Backend technologies (Java, .NET, Python, TypeScript)
-- Embedded systems (Linux, Raspberry Pi)
-- Agile methodologies and technical leadership
+[Back to Table of contents](#table-of-contents)
 
-## 📞 Contact
+## License
+- Licensed under the Apache License 2.0 (`LICENSE`). This keeps the project open source, allows commercial and private reuse, and requires preservation of notices so Felipe Belo remains credited as the originator.
+- Apache 2.0 is a permissive choice that welcomes forks and contributions while keeping attribution intact and avoiding copyleft obligations for downstream users.
 
-- **Email**: felipeefb@gmail.com
-- **Phone**: +55 83 99980-6074 / +55 83 99650-2223
-- **Location**: Campina Grande, Paraíba - Brasil
-- **LinkedIn**: [felipe-eduardo-farias-belo](https://www.linkedin.com/in/felipe-eduardo-farias-belo)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+[Back to Table of contents](#table-of-contents)
